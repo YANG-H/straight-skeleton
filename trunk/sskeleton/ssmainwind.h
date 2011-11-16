@@ -2,7 +2,10 @@
 #define SSMAINWIND_H
 
 #include <QtGui/QMainWindow>
+#include <QMdiArea>
 #include "ui_ssmainwind.h"
+
+class SSWidget;
 
 class SSMainWind : public QMainWindow
 {
@@ -14,6 +17,9 @@ public:
 
 private:
 	Ui::SSMainWindClass ui;
+
+	QMdiArea* m_mdiArea;
+	SSWidget* m_sswidget;
 };
 
 #endif // SSMAINWIND_H
