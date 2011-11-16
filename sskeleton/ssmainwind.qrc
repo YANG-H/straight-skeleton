@@ -1,4 +1,42 @@
 <RCC>
-    <qresource prefix="SSMainWind">
+    <qresource prefix="/SSMainWind">
+        <file>Resources/bubble.png</file>
+        <file>Resources/bug.png</file>
+        <file>Resources/card.png</file>
+        <file>Resources/clock.png</file>
+        <file>Resources/cup.png</file>
+        <file>Resources/date.png</file>
+        <file>Resources/drawer.png</file>
+        <file>Resources/folder.png</file>
+        <file>Resources/gear.png</file>
+        <file>Resources/globe.png</file>
+        <file>Resources/heart.png</file>
+        <file>Resources/help.png</file>
+        <file>Resources/inbox.png</file>
+        <file>Resources/info.png</file>
+        <file>Resources/leaf.png</file>
+        <file>Resources/lock.png</file>
+        <file>Resources/mail.png</file>
+        <file>Resources/moleskine.png</file>
+        <file>Resources/monitor.png</file>
+        <file>Resources/music.png</file>
+        <file>Resources/new.png</file>
+        <file>Resources/new_compute.png</file>
+        <file>Resources/new_optimize.png</file>
+        <file>Resources/notebook.png</file>
+        <file>Resources/pill.png</file>
+        <file>Resources/present.png</file>
+        <file>Resources/print.png</file>
+        <file>Resources/puzzle.png</file>
+        <file>Resources/rulers.png</file>
+        <file>Resources/save.png</file>
+        <file>Resources/save_as.png</file>
+        <file>Resources/search.png</file>
+        <file>Resources/soccer.png</file>
+        <file>Resources/star.png</file>
+        <file>Resources/statistics.png</file>
+        <file>Resources/thermo.png</file>
+        <file>Resources/user.png</file>
+        <file>Resources/wallet.png</file>
     </qresource>
 </RCC>
