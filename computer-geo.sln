@@ -1,7 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sskeleton", "sskeleton\sskeleton.vcproj", "{632A664B-47E2-41FA-8466-D8462B567B7F}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sskeleton", "sskeleton\sskeleton.vcxproj", "{632A664B-47E2-41FA-8466-D8462B567B7F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B} = {7E3E9287-2846-43A5-8D7F-75048D901C8B}
+		{F37888DB-96C8-48AB-A92B-9883ED9F181E} = {F37888DB-96C8-48AB-A92B-9883ED9F181E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EthanMLib", "EthanMLib\EthanMLib.vcxproj", "{7E3E9287-2846-43A5-8D7F-75048D901C8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSLib", "SSLib\SSLib.vcxproj", "{F37888DB-96C8-48AB-A92B-9883ED9F181E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B} = {7E3E9287-2846-43A5-8D7F-75048D901C8B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +24,14 @@ Global
 		{632A664B-47E2-41FA-8466-D8462B567B7F}.Debug|Win32.Build.0 = Debug|Win32
 		{632A664B-47E2-41FA-8466-D8462B567B7F}.Release|Win32.ActiveCfg = Release|Win32
 		{632A664B-47E2-41FA-8466-D8462B567B7F}.Release|Win32.Build.0 = Release|Win32
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B}.Debug|Win32.Build.0 = Debug|Win32
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B}.Release|Win32.ActiveCfg = Release|Win32
+		{7E3E9287-2846-43A5-8D7F-75048D901C8B}.Release|Win32.Build.0 = Release|Win32
+		{F37888DB-96C8-48AB-A92B-9883ED9F181E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F37888DB-96C8-48AB-A92B-9883ED9F181E}.Debug|Win32.Build.0 = Debug|Win32
+		{F37888DB-96C8-48AB-A92B-9883ED9F181E}.Release|Win32.ActiveCfg = Release|Win32
+		{F37888DB-96C8-48AB-A92B-9883ED9F181E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
