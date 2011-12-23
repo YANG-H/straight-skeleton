@@ -1,0 +1,17 @@
+crashed1-copy1 SwitchEvent崩溃 （已解决）
+crashed1-copy2 3D缺少，怀疑是remainingevent里面的（已解决）
+crashed1 3D缺面 （已解决）
+
+4 3d缺面(已解决)
+c 3d缺面 （已解决）
+crash3 3d缺面（已解决）
+
+点太近-copy2 崩溃 （已解决）
+
+inputerror 结果不太对 ？（已解决）
+untitled 结果不太对 ？
+
+数组越界2 有毛刺 （已解决）
+
+
+点太近-copy4 结果不对 (基本解决，但是有毛刺)（毛刺已解决）

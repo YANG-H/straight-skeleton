@@ -6,12 +6,111 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
-    <height>545</height>
+    <width>1200</width>
+    <height>900</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Straight Skeleton</string>
+  <property name="windowIcon">
+   <iconset resource="ssmainwind.qrc">
+    <normaloff>:/nstyle/Resources/black/icon_icon&amp;48.png</normaloff>:/nstyle/Resources/black/icon_icon&amp;48.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: gray;
+	color: #DDDDDD
+} 
+QMenuBar {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 lightgray, stop:1 darkgray);
+}
+QMenuBar::item {
+	padding: 1px 7px;
+	background: transparent;
+}
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+	background: #a8a8a8;
+}
+QMenuBar::item:pressed {
+	background: #888888;
+}
+QMenu {
+	background-color: #323232; /* sets background of the menu */
+	color: white;
+	border: 1px solid black;
+} 
+QMenu::item {
+	background-color: transparent;
+} 
+QMenu::item:selected { /* when user selects item using mouse or keyboard */
+	background-color: #777777;
+}
+QMenu::item:checked {
+	background-color: #456789
+}
+QToolBar {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 #525252, stop:1 #000000);	
+	border-color:#2020FF
+}
+QStatusBar {
+	background-color: black;
+	color: #DDDDDD
+}
+QDialog {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 #000000, stop:1 #767676);
+	color: #dddddd; 
+}
+QScrollBar:horizontal {
+	height: 20px; 
+}
+QScrollBar:vertical {
+	width: 20px; 
+}
+QTabWidget::pane {
+	border-top: 2px solid #C2C7CB;
+}
+QGroupBox {color:white}
+.QLabel { 
+	color: white;  
+}
+QSplitter::handle {
+	background-color: black; 
+	image: url(:/nstyle/Resources/splitter.png);
+}
+QSplitter::handle:vertical {
+     height: 6px;
+}
+QProgressBar {
+     border: 1px solid grey;
+     border-radius: 3px;
+     text-align: center;
+}
+QProgressBar::chunk {
+     background-color: darkgrey;
+     width: 5px;
+     margin: 0.5px;
+}
+QDockWidget {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 #525252, stop:1 #000000);
+    color:white;
+    border: 1px solid black;
+}
+QDockWidget::title{
+	background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,stop:0 transparent, stop:1 lightgrey);
+    padding: 3px
+}
+QDockWidget .QTreeView { 
+   background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 #dddddd, stop:1 #aaaaaa); 
+   color: black; 
+   alternate-background-color: #303030; 
+   border: 2px solid black;
+}
+QCheckBox {
+   color: white;
+}
+QTextEdit {
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,stop:0 #dddddd, stop:1 #aaaaaa); 
+  color: black;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
@@ -19,32 +118,57 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>675</width>
-     <height>23</height>
+     <width>1200</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>&amp;Algorithm</string>
     </property>
+    <addaction name="actionRun"/>
+    <addaction name="actionSuspend"/>
+    <addaction name="actionStop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Info</string>
     </property>
+    <addaction name="actionTips"/>
+    <addaction name="actionInfo"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>Control</string>
+    </property>
+    <addaction name="actionInsertPolygon"/>
+    <addaction name="actionRubberBand"/>
+    <addaction name="actionScrollHand"/>
+    <addaction name="separator"/>
+    <addaction name="actionTopView"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>[Toolbar] Main</string>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -53,30 +177,353 @@
    </attribute>
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSaveAs"/>
+   <addaction name="actionInfo"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="controlToolbar">
+   <property name="windowTitle">
+    <string>[Toolbar] Control</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRubberBand"/>
+   <addaction name="actionScrollHand"/>
+   <addaction name="actionInsertPolygon"/>
+   <addaction name="separator"/>
+   <addaction name="actionTopView"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarTask">
+   <property name="windowTitle">
+    <string>[ToolBar] Task</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRun"/>
+   <addaction name="actionSuspend"/>
+   <addaction name="actionStop"/>
+  </widget>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="ssmainwind.qrc">
-     <normaloff>:/SSMainWind/Resources/folder.png</normaloff>:/SSMainWind/Resources/folder.png</iconset>
+     <normaloff>:/nstyle/Resources/white/folder_open_icon&amp;32.png</normaloff>:/nstyle/Resources/white/folder_open_icon&amp;32.png</iconset>
    </property>
    <property name="text">
     <string>Open...</string>
    </property>
    <property name="toolTip">
-    <string>open polyline document</string>
+    <string>Open document</string>
+   </property>
+   <property name="statusTip">
+    <string>Open document</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open document</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionNew">
    <property name="icon">
     <iconset resource="ssmainwind.qrc">
-     <normaloff>:/SSMainWind/Resources/new.png</normaloff>:/SSMainWind/Resources/new.png</iconset>
+     <normaloff>:/nstyle/Resources/white/doc_new_icon&amp;32.png</normaloff>:/nstyle/Resources/white/doc_new_icon&amp;32.png</iconset>
    </property>
    <property name="text">
     <string>New</string>
    </property>
    <property name="toolTip">
-    <string>create new polyline document</string>
+    <string>Create a new document</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new document</string>
+   </property>
+   <property name="whatsThis">
+    <string>Create a new document</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionRubberBand">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/cursor_arrow_icon&amp;32.png</normaloff>:/nstyle/Resources/white/cursor_arrow_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select Mode</string>
+   </property>
+   <property name="iconText">
+    <string>Clean</string>
+   </property>
+   <property name="toolTip">
+    <string>Switch to Rubber-Band select mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Switch to Rubber-Band select mode</string>
+   </property>
+   <property name="whatsThis">
+    <string>Switch to Rubber-Band select mode</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
+  </action>
+  <action name="actionInfo">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/info_icon&amp;32.png</normaloff>:/nstyle/Resources/white/info_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Infomation</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Infomation</string>
+   </property>
+   <property name="statusTip">
+    <string>Show infomation</string>
+   </property>
+   <property name="whatsThis">
+    <string>Show Infomation</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/save_icon&amp;32.png</normaloff>:/nstyle/Resources/white/save_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save this document</string>
+   </property>
+   <property name="statusTip">
+    <string>Save this document</string>
+   </property>
+   <property name="whatsThis">
+    <string>Save this document</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/save_as_icon&amp;32.png</normaloff>:/nstyle/Resources/white/save_as_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+   <property name="toolTip">
+    <string>Save this document as another file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save this document as another file</string>
+   </property>
+   <property name="whatsThis">
+    <string>Save this document as another file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionInsertPolygon">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/sq_plus_icon&amp;32.png</normaloff>
+     <normalon>:/nstyle/Resources/white/round_plus_icon&amp;32.png</normalon>:/nstyle/Resources/white/sq_plus_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Insert Polygon</string>
+   </property>
+   <property name="toolTip">
+    <string>Insert a new polygon</string>
+   </property>
+   <property name="statusTip">
+    <string>Insert a new polygon</string>
+   </property>
+   <property name="whatsThis">
+    <string>Insert a new polygon</string>
+   </property>
+   <property name="shortcut">
+    <string>I</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/on-off_icon&amp;32.png</normaloff>:/nstyle/Resources/white/on-off_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit application</string>
+   </property>
+  </action>
+  <action name="actionSuspend">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/playback_pause_icon&amp;32.png</normaloff>
+     <normalon>:/nstyle/Resources/white/playback_pause_icon&amp;32.png</normalon>:/nstyle/Resources/white/playback_pause_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Suspend</string>
+   </property>
+   <property name="toolTip">
+    <string>Suspend current task</string>
+   </property>
+   <property name="statusTip">
+    <string>Suspend current task</string>
+   </property>
+   <property name="whatsThis">
+    <string>Suspend current task</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/round_delete_icon&amp;32.png</normaloff>:/nstyle/Resources/white/round_delete_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Stop computing skeletons</string>
+   </property>
+   <property name="statusTip">
+    <string>Stop computing skeletons</string>
+   </property>
+   <property name="whatsThis">
+    <string>Stop computing skeletons</string>
+   </property>
+  </action>
+  <action name="actionTopView">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/eye_inv_icon&amp;32.png</normaloff>:/nstyle/Resources/white/eye_inv_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Top View</string>
+   </property>
+   <property name="toolTip">
+    <string>Get top view of 3D terrain</string>
+   </property>
+   <property name="statusTip">
+    <string>Get top view of 3D terrain</string>
+   </property>
+   <property name="whatsThis">
+    <string>Get top view of 3D terrain</string>
+   </property>
+  </action>
+  <action name="actionResetCamera">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/box_icon&amp;32.png</normaloff>:/nstyle/Resources/white/box_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset Camera</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset camera of 3D scene</string>
+   </property>
+   <property name="statusTip">
+    <string>Reset camera of 3D scene</string>
+   </property>
+   <property name="whatsThis">
+    <string>Reset camera of 3D scene</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/playback_play_icon&amp;32.png</normaloff>:/nstyle/Resources/white/playback_play_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run</string>
+   </property>
+   <property name="iconText">
+    <string>Run</string>
+   </property>
+   <property name="toolTip">
+    <string>Start/resume computing skeletons</string>
+   </property>
+   <property name="statusTip">
+    <string>Start/resume computing skeletons</string>
+   </property>
+   <property name="whatsThis">
+    <string>Start/resume computing skeletons</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionScrollHand">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/cursor_hand_icon&amp;32.png</normaloff>:/nstyle/Resources/white/cursor_hand_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Drag Mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Switch to Scroll-Hand drag mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Switch to Scroll-Hand drag mode</string>
+   </property>
+   <property name="whatsThis">
+    <string>Switch to Scroll-Hand drag mode</string>
+   </property>
+   <property name="shortcut">
+    <string>H</string>
+   </property>
+  </action>
+  <action name="actionRemoveVertex">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/sq_minus_icon&amp;32.png</normaloff>:/nstyle/Resources/white/sq_minus_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove Vertex</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove selected vertexes</string>
+   </property>
+  </action>
+  <action name="actionTips">
+   <property name="icon">
+    <iconset resource="ssmainwind.qrc">
+     <normaloff>:/nstyle/Resources/white/spechbubble_sq_line_icon&amp;32.png</normaloff>:/nstyle/Resources/white/spechbubble_sq_line_icon&amp;32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Tips</string>
+   </property>
+   <property name="toolTip">
+    <string>Show tips for this program</string>
+   </property>
+   <property name="statusTip">
+    <string>Show tips for this program</string>
+   </property>
+   <property name="whatsThis">
+    <string>Show tips for this program</string>
    </property>
   </action>
  </widget>
@@ -84,5 +531,22 @@
  <resources>
   <include location="ssmainwind.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>SSMainWindClass</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
