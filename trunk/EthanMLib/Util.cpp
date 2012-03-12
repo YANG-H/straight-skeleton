@@ -1,6 +1,6 @@
 #include "Util.h"
 #include "MCConstants.h"
-int toLeft(QLineF line, QPointF p)
+ETHANMLIB_EXPORT int toLeft( const QLineF& line, const QPointF& p )
 {
 	QPointF p1 = line.p1() - p;
 	QPointF p2 = line.p2() - p;
@@ -14,7 +14,7 @@ int toLeft(QLineF line, QPointF p)
 		return -1;
 	return 0;
 }
-bool IsTwoLineIntersect(QLineF line1, QLineF line2)
+ETHANMLIB_EXPORT bool IsTwoLineIntersect( const QLineF& line1, const QLineF& line2 )
 {
 	int nLine1Start = toLeft(line2, line1.p1());
 	int nLine1End = toLeft(line2, line1.p2());
@@ -26,7 +26,7 @@ bool IsTwoLineIntersect(QLineF line1, QLineF line2)
 		return false;
 	return true;
 }
-bool IsLineIntersectRect(QLineF line, MCCell* c)
+ETHANMLIB_EXPORT bool IsLineIntersectRect( const QLineF& line, MCCell* c )
 {
 	if(line.p1().x() >= c->leftup.x() && line.p1().x() <= c->leftup.x() + c->width
 		&& line.p1().y() >= c->leftup.y() && line.p1().y() <= c->leftup.x() + c->height)
@@ -45,7 +45,7 @@ bool IsLineIntersectRect(QLineF line, MCCell* c)
 	return false;
 }
 
-bool isSamePoint(CrashPoint p1, CrashPoint p2)
+ETHANMLIB_EXPORT bool isSamePoint( const CrashPoint& p1, const CrashPoint& p2 )
 {
 	if(p1.p.x() - p2.p.x() < EPSINON && p1.p.x() - p2.p.x() > -EPSINON
 		&& p1.p.y() - p2.p.y() < EPSINON && p1.p.y() - p2.p.y() > -EPSINON)

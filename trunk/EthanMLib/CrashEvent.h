@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CRASHEVENT_H
+#define CRASHEVENT_H
+
 #include "Point2D.h"
 #include "MCCell.h"
 struct CrashEvent
@@ -9,7 +11,7 @@ public:
 	double time;
 	double othertime;
 	bool isCrashToWall;
-	friend bool operator<(CrashEvent a, CrashEvent b)
+	friend bool operator<(const CrashEvent& a, const CrashEvent& b)
 	{
 		return a.time > b.time;
 	}
@@ -26,8 +28,10 @@ struct MCEvent
 	struct SwitchEvent *s;
 	int id;
 	double key;
-	friend bool operator<(MCEvent a, MCEvent b)
+	friend bool operator<(const MCEvent& a, const MCEvent& b)
 	{
 		return a.key > b.key;
 	}
 };
+
+#endif

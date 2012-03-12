@@ -7,6 +7,8 @@
 #ifndef PSLGEDGE_H
 #define PSLGEDGE_H
 
+#include "sslib_global.h"
+
 class PSLGVertex;
 
 enum PSLGEdgeType {
@@ -14,7 +16,7 @@ enum PSLGEdgeType {
 	MOTORCYCLE_EDGE
 };
 // 边节点，每一条边都有方向，从弧尾到虎头为逆时针方向
-class PSLGEdge {
+class SSLIB_EXPORT PSLGEdge {
 public:
 	bool mark; //是否被删的标志
 	PSLGVertex* tailvex; //弧尾，起点

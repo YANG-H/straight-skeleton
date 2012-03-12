@@ -46,6 +46,7 @@ public slots:
 	void on_actionResetCamera_triggered();
 
 	void updateSettings();
+	void popMessage();
 
 private:
 	Ui::SSMainWindClass ui;

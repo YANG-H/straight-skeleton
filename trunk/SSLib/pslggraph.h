@@ -15,7 +15,9 @@
 #include "pslgedge.h"
 #include "priorityqueue.h"
 
-class PSLGGraph {
+#include "sslib_global.h"
+
+class SSLIB_EXPORT PSLGGraph {
 public:
 	std::vector<PSLGEdge*> edgeList;
 

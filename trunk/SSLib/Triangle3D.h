@@ -7,7 +7,9 @@
 
 #include <QVector3D>
 
-class Triangle3D {
+#include "sslib_global.h"
+
+class SSLIB_EXPORT Triangle3D {
 public:
 	QVector3D v1;
 	QVector3D v2;

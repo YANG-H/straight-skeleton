@@ -11,6 +11,8 @@
 #include <QPointF>
 #include <QVector2D>
 
+#include "sslib_global.h"
+
 class PSLGEdge;
 
 enum PSLGVertexType {
@@ -23,7 +25,7 @@ enum PSLGVertexType {
 };
 
 // 顶点节点
-class PSLGVertex {
+class SSLIB_EXPORT PSLGVertex {
 public:
 	bool mark; //顶点的标记访问
 	QPointF oriPosition; //顶点的起始位置

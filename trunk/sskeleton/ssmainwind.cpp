@@ -26,6 +26,7 @@
 #include "sstipdlg.h"
 #include "sswidget.h"
 #include "sspropmodel.h"
+#include "sstip.h"
 
 #define FILTER_STR tr("Polygon Files (*.plgx);;Old Polygon Files (*.plg);;Text Format Polygon Files (*.poly);;All Files (*.*)")
 #define OUT_FILTER_STR tr("Polygon Files (*.plgx)")
@@ -113,14 +114,12 @@ void SSMainWind::initUI()
 	m_settings = new QSettings(tr("config.ini"), QSettings::IniFormat, this);
 	if(!m_settings->contains(tr("showTip")))
 		m_settings->setValue(tr("showTip"), true);
-	if(!m_settings->contains(tr("tipContent")))
-		m_settings->setValue(tr("tipContent"), tr("Sorry but we failed loading tips..."));
-	//if(!m_settings->contains(tr("windowSize")))
-	//	m_settings->setValue(tr("windowSize"), QSize(1200, 900));
+	if(!m_settings->contains(tr("windowSize")))
+		m_settings->setValue(tr("windowSize"), QSize(1200, 900));
 
 	// tipdlg things
 	bool showTip = m_settings->value(tr("showTip")).toBool();
-	QString tipContent = m_settings->value(tr("tipContent")).toString();
+	QString tipContent = tr(sstip);
 
 	m_tipDlg = new SSTipDlg(tipContent, showTip, this);
 	connect(m_tipDlg, SIGNAL(settingsUpdated()), this, SLOT(updateSettings()));
@@ -147,6 +146,8 @@ void SSMainWind::initUI()
 	setCentralWidget(splitter);
 
 	m_task = new SSTask(this);
+	connect(m_task, SIGNAL(finished()), this, SLOT(popMessage()));
+
 	m_ss2dwidget->bind(m_task);
 	m_ss3dwidget->bind(m_task);
 	connect(m_ss2dwidget, SIGNAL(canvasSizeChanged(const QSizeF&)), m_ss3dwidget, SLOT(resizeCanvas(const QSizeF&)));
@@ -232,7 +233,9 @@ void SSMainWind::initUI()
 
 	rubberBandDrag->addTransition(ui.actionScrollHand, SIGNAL(triggered()), scrollHandDrag);
 	insertingFirst->addTransition(ui.actionScrollHand, SIGNAL(triggered()), scrollHandDrag);
-	insertMore->addTransition(ui.actionScrollHand, SIGNAL(triggered()), scrollHandDrag);
+	insertMore->addTransition(ui.actionScrollHand, SIGNAL(triggered()), scrollHandDrag);	
+	insertMore->addTransition(m_task, SIGNAL(finished()), scrollHandDrag);
+	insertingFirst->addTransition(m_task, SIGNAL(finished()), scrollHandDrag);
 
 	scrollHandDrag->addTransition(ui.actionRubberBand, SIGNAL(triggered()), rubberBandDrag);
 	insertingFirst->addTransition(ui.actionRubberBand, SIGNAL(triggered()), rubberBandDrag);
@@ -379,4 +382,10 @@ void SSMainWind::updateSettings()
 void SSMainWind::on_actionTips_triggered()
 {
 	m_tipDlg->show();
+}
+
+void SSMainWind::popMessage()
+{
+	if(m_task->property("-Use Time Counting").toBool())
+		QMessageBox::information(this, tr("Duration"), tr("Duration =  %1 seconds").arg(m_task->duration));
 }

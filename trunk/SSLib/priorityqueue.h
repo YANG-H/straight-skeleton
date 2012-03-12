@@ -9,7 +9,9 @@
 #include <vector>
 #include "pslgedge.h"
 
-class PriorityQueue {
+#include "sslib_global.h"
+
+class SSLIB_EXPORT PriorityQueue {
 public:
 	std::vector<PSLGEdge*> edges;
 	int heapsize;
