@@ -6,6 +6,7 @@
 #include <QGraphicsDropShadowEffect>
 #include <QVector2D>
 #include <QTextStream>
+#include <QPointF>
 #include <QtDebug>
 
 #include "sstask.h"
@@ -219,6 +220,7 @@ SS2DWidget::SS2DWidget(QWidget *parent)
 	: QGraphicsView(parent), m_task(0), m_fileInfo(tr("untitled.plgx")), m_canvas(0), 
 	m_penCursor(QPixmap(":/nstyle/Resources/black/pencil_icon&16.png"), 0, 16)
 {
+	setProperty("-Scale Factor of .poly Files", 5000);
 	//setProperty("-Background Color", QColor(Qt::transparent));
 	setProperty("-Polygon Edge Color", QColor(Qt::yellow));
 	setProperty("-Polygon Vertex Color", QColor(Qt::red));
@@ -270,6 +272,8 @@ void SS2DWidget::fromPolygons( const QList<QPolygonF>& polygons, double scale /*
 	QRectF boundingRect(xmin, ymin, xmax-xmin, ymax-ymin);
 	if(adjustCanvasSize){
 		QSizeF sizeF((xmax - xmin) * scale + 5, (ymax - ymin) * scale + 5);
+		if(polygons.empty())
+			sizeF = QSizeF(450, 650);
 		m_canvas->setSize(sizeF);
 		emit canvasSizeChanged(sizeF);
 	}
@@ -282,6 +286,7 @@ void SS2DWidget::fromPolygons( const QList<QPolygonF>& polygons, double scale /*
 		firstV->setPos((polygon.at(0) - boundingRect.center()) * scale);
 		m_scene->addItem(firstV);
 		m_heads.append(firstV);
+		m_tails.append(firstV);
 
 		SSVertex* pre = firstV;
 		for(int i = 1; i < polygon.size() - 1; i++){
@@ -291,12 +296,14 @@ void SS2DWidget::fromPolygons( const QList<QPolygonF>& polygons, double scale /*
 			pre = cur;
 			m_scene->addItem(cur);
 			m_scene->addItem(e);
+			m_tails.last() = cur;
 		}
 		SSVertex* lastV = firstV;
 		if(!polygon.isClosed()){
 			lastV = new SSVertex(m_canvas);
 			lastV->setPos((polygon.last() - boundingRect.center()) * scale);
 			m_scene->addItem(lastV);
+			m_tails.last() = lastV;
 		}
 		SSEdge* e = new SSEdge(pre, lastV, m_canvas);
 		m_scene->addItem(e);
@@ -309,7 +316,9 @@ QList<QPolygonF> SS2DWidget::toPolygons()
 	for(int i = 0; i < m_heads.size(); i++){
 		QPolygonF polygon;
 		SSVertex* head = m_heads.at(i);
+		SSVertex* tail = m_tails.at(i);
 		if(!head->nextE() || head->nextE()->nextV() == head 
+			|| head->nextE()->nextV() == tail // ignore two point polygon
 			|| !head->prevE()) // ignore unclosed polygons
 			continue;
 
@@ -317,13 +326,14 @@ QList<QPolygonF> SS2DWidget::toPolygons()
 		SSVertex* cur = head;
 		while(cur->nextE()){
 			cur = cur->nextE()->nextV();
-			if(polygon.last() != cur->pos())
+			if(!qFuzzyCompare(QVector2D(polygon.last()), QVector2D(cur->pos())))
 				polygon.append(cur->pos());
 			if(cur == head)
 				break;
 		}
 
-		results << polygon;
+		if(polygon.size() >= 4)
+			results << polygon;
 	}
 	return results;
 }
@@ -354,6 +364,8 @@ bool SS2DWidget::load()
 	QPixmap backgroundImage;
 	QList<QPolygonF> polygons;
 	QSize canvasSize;
+	m_heads.clear();
+	m_tails.clear();
 
 	if(m_fileInfo.suffix().toLower() == tr("plg")){	// old plg file	
 		if(file.open(QIODevice::ReadOnly)){
@@ -405,7 +417,8 @@ bool SS2DWidget::load()
 			m_canvas = new SSCanvas(this);			
 
 			m_scene->addItem(m_canvas);
-			fromPolygons(polygons, 5000, true);
+			int scaleFactor = property("-Scale Factor of .poly Files").toInt();
+			fromPolygons(polygons, scaleFactor > 0 ? scaleFactor : 1, true);
 			return true;
 		}
 	}

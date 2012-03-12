@@ -82,18 +82,6 @@
     <ClCompile Include="ss3dwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sstask.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_sstask.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_sstask.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Template\moc_sstask.cpp">
-      <Filter>Generated Files\Template</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ss3dwidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -145,6 +133,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sstip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -280,9 +271,6 @@
     <CustomBuild Include="ssconfigdlg.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="sstask.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ss3dwidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -307,5 +295,10 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sskeleton.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\black\icon_icon&amp;48.png" />
+    <None Include="icon1.ico" />
+    <None Include="Resources\icon.ico" />
   </ItemGroup>
 </Project>

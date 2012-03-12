@@ -61,13 +61,15 @@
 #define L_SORT_INCREASING 0
 #define L_SORT_DECREASING 1
 #include "CrashEvent.h"
+#include "ethanmlib_global.h"
+
 struct HeapEle
 {
 	int id;
 	CrashEvent* e;
 	double key;
 };
-class MinHeap
+class ETHANMLIB_EXPORT MinHeap
 {
 public:
 	void print(FILE    *fp);

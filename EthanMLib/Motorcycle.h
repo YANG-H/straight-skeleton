@@ -4,11 +4,13 @@
 #include <QVector2D>
 #include <QLineF>
 
+#include "ethanmlib_global.h"
+
 //#include "Point2D.h"
 //#include "Vector2D.h"
 #include "CrashEvent.h"
 #include "MCConstants.h"
-class Motorcycle
+class ETHANMLIB_EXPORT Motorcycle
 {
 public:
 	int id;

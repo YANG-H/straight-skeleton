@@ -74,6 +74,10 @@ void reducePoints(std::vector<CrashPoint>& points)
 	for(int i = 0; i < newPoints.size(); i++)
 		points.push_back(newPoints[i]);
 }
+
+
+
+
 void clearMC(const std::vector<Motorcycle>& motors, const std::vector<QLineF>& walls,
 	/*OUT*/ std::vector<CrashPoint>& points, std::vector<struct MotorLines>& lines)
 {

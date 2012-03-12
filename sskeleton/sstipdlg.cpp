@@ -7,7 +7,7 @@ SSTipDlg::SSTipDlg(const QString& content, bool alwaysShow, QWidget *parent)
 
 	m_tipTE = new QTextEdit;
 	m_tipTE->setReadOnly(true);
-	m_tipTE->setText(content);
+	m_tipTE->setHtml(content);
 	m_tipTE->setWhatsThis(tr("Tips to use this program"));
 	mainLy->addWidget(m_tipTE);
 
@@ -18,6 +18,7 @@ SSTipDlg::SSTipDlg(const QString& content, bool alwaysShow, QWidget *parent)
 
 	setLayout(mainLy);
 	setWindowTitle(tr("Tips"));
+	resize(500, 600);
 }
 
 SSTipDlg::~SSTipDlg()

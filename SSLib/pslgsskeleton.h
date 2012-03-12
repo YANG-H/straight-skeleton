@@ -11,6 +11,8 @@
 #include "priorityqueue.h"
 #include "Triangle3D.h"
 
+#include "sslib_global.h"
+
 class SSTask;
 
 enum PSLGEventType {
@@ -23,7 +25,7 @@ enum PSLGEventType {
 	OTHER_EVENT
 };
 
-class PSLGSSkeleton{
+class SSLIB_EXPORT PSLGSSkeleton{
 private:
 	PSLGGraph* ssgraph;
 	//所有边构成的事件队列

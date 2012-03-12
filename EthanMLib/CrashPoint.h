@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QPointF>
+
 enum PointType
 {
 	ReflexVertice, MovingVertice, ClashVertice, WallVertice, InfiniteVertice
@@ -22,14 +24,14 @@ public:
 	{
 
 	}
-	CrashPoint(QPointF p, PointType type, int wallNo)
+	CrashPoint(const QPointF& p, PointType type, int wallNo)
 	{
 		this->p = p;
 		this->type = type;
 		this->wallNo = wallNo;
 	}
 
-	friend bool operator < (CrashPoint a, CrashPoint b)
+	friend bool operator < (const CrashPoint& a, const CrashPoint& b)
 	{
 		return a.time > b.time;
 	}
